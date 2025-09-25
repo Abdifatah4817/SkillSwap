@@ -30,7 +30,16 @@ SkillSwap is a single-page application (SPA) that allows users to browse, search
 1. Clone the repo  
    `git clone https://github.com/YOUR_USERNAME/SkillSwap.git`
 
-2. Start the server  
+2. Start the server
+3. ## 📡 Backend (json-server)
+
+This project uses `json-server` locally to simulate a REST API.
+
+To run the backend locally:
+
+```bash
+json-server --watch db.json
+
    `json-server --watch db.json`
 
 3. Open `index.html` in browser or deploy with Netlify
