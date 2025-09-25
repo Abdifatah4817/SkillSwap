@@ -1,55 +1,30 @@
-# SkillSwap
-Helping people connect, share what they’re good at, learn new things, and build a stronger community together. No cash needed—just skills and kindness!
-# SkillSwap
 
-SkillSwap is a single-page application (SPA) that allows users to browse, search, and add skill exchange opportunities. Built with HTML, CSS, and JavaScript, the project uses `json-server` to simulate a backend.
+---
 
-## 🔧 Technologies Used
+## 🌐 Deployment Guide
 
-- HTML5
-- CSS3
-- JavaScript (Vanilla)
-- json-server
-- Git + GitHub
-- Netlify (Deployment)
+### 🔷 Frontend (Netlify)
 
-## 📦 Features
+1. Go to [https://netlify.com](https://netlify.com)
+2. Create a new site from GitHub repo
+3. Set:
+   - Build command: *(leave blank)*
+   - Publish directory: `.`
+4. Click **Deploy**
+5. Copy your live site URL (e.g. `https://skillswap.netlify.app`)
 
-- View a list of skill offers
-- Add new skills via a form
-- Live search/filter by name or category
-- Dark/light mode toggle
-- Responsive design
+---
 
-## 🚀 Live Demo
+### 🔶 Backend (Render)
 
-🔗 [View on Netlify](https://skillswap2025.netlify.app/)
+1. Go to [https://render.com](https://render.com)
+2. Create new **Web Service**
+3. Connect your GitHub repo
+4. Set:
+   - **Start command**: `json-server --watch db.json --port 10000`
+5. Copy the deployed backend URL (e.g. `https://skillswap-api.onrender.com`)
+6. Update `api.js`:
 
-## 🛠️ Setup Instructions
-
-1. Clone the repo  
-   `git clone https://github.com/YOUR_USERNAME/SkillSwap.git`
-
-2. Start the server
-3. ## 📡 Backend (json-server)
-
-This project uses `json-server` locally to simulate a REST API.
-
-To run the backend locally:
-
-```bash
-json-server --watch db.json
-
-   `json-server --watch db.json`
-
-3. Open `index.html` in browser or deploy with Netlify
-
-## 📈 Future Features
-
-- Login / Registration
-- Skill matching system
-- Private messaging
-
-## 🙋‍♂️ Questions?
-
-Feel free to open an issue or contact me via GitHub.
+```js
+// js/api.js
+const API_URL = 'https://skillswap-api.onrender.com/skills';
