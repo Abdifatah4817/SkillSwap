@@ -23,7 +23,7 @@ SkillSwap is a single-page application (SPA) that allows users to browse, search
 
 ## 🚀 Live Demo
 
-🔗 [View on Netlify](https://skillswap.netlify.app)
+🔗 [View on Netlify](https://skillswap2025.netlify.app/)
 
 ## 🛠️ Setup Instructions
 
