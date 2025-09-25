@@ -26,9 +26,9 @@ SkillSwap is a single‑page web app where users can browse, search, and add ski
 
 ## 🚀 Demo / Live Links
 
-- **Frontend (Netlify):** [SkillSwap Live](https://skillswap.netlify.app)  
-- **Backend / JSON (Render):** [SkillSwap API](https://your-render-link.onrender.com)  
-- **Video Walkthrough:** [Watch Demo](https://youtu.be/your-demo-video-link)
+- **Frontend (Netlify):** [SkillSwap Live](https://skillswap2025.netlify.app/)  
+- **Backend / JSON (Render):** [SkillSwap API](https://skillswap-rs7b.onrender.com/)  
+- **Video Walkthrough:** [Watch Demo](https://www.youtube.com/watch?v=Da2BZ3WQSbs)
 
 ---
 
