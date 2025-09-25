@@ -1,66 +1,108 @@
-const baseURL = "http://localhost:3000/skills";
+const searchInput = document.getElementById("search");
 const skillList = document.getElementById("skill-list");
-const form = document.getElementById("skill-form");
-const search = document.getElementById("search");
+const skillForm = document.getElementById("skill-form");
 const toggleModeBtn = document.getElementById("toggle-mode");
 
+let allSkills = [];
+
+// 🔄 Fetch skills
 function fetchSkills() {
-  fetch(baseURL)
+  fetch("http://localhost:3000/skills")
     .then(res => res.json())
-    .then(displaySkills);
+    .then(data => {
+      allSkills = data;
+      displaySkills(allSkills);
+    })
+    .catch(err => console.error("Error fetching skills:", err));
 }
 
+// 📦 Display skills
 function displaySkills(skills) {
   skillList.innerHTML = "";
+
+  if (skills.length === 0) {
+    skillList.innerHTML = `<p>No skills found.</p>`;
+    return;
+  }
+
   skills.forEach(skill => {
-    const div = document.createElement("div");
-    div.className = "skill-card";
-    div.innerHTML = `
+    const card = document.createElement("div");
+    card.className = "skill-card";
+    card.innerHTML = `
       <h3>${skill.name}</h3>
       <p><strong>Category:</strong> ${skill.category}</p>
       <p>${skill.description}</p>
       <p><strong>Location:</strong> ${skill.location}</p>
+      <button class="delete-btn" data-id="${skill.id}">🗑 Delete</button>
     `;
-    skillList.appendChild(div);
+    skillList.appendChild(card);
+  });
+
+  // 🗑 Add delete event listeners
+  const deleteButtons = document.querySelectorAll(".delete-btn");
+  deleteButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+      const id = e.target.dataset.id;
+      deleteSkill(id);
+    });
   });
 }
 
-form.addEventListener("submit", e => {
+// 🧹 Delete skill
+function deleteSkill(id) {
+  fetch(`http://localhost:3000/skills/${id}`, {
+    method: "DELETE"
+  })
+    .then(() => {
+      allSkills = allSkills.filter(skill => skill.id != id);
+      displaySkills(allSkills);
+    })
+    .catch(err => console.error("Delete error:", err));
+}
+
+// 🔍 Search functionality
+searchInput.addEventListener("input", (e) => {
+  const term = e.target.value.toLowerCase();
+  const filtered = allSkills.filter(skill =>
+    skill.name.toLowerCase().includes(term) ||
+    skill.category.toLowerCase().includes(term) ||
+    skill.description.toLowerCase().includes(term) ||
+    skill.location.toLowerCase().includes(term)
+  );
+  displaySkills(filtered);
+});
+
+// ➕ Handle form submission
+skillForm.addEventListener("submit", (e) => {
   e.preventDefault();
+
   const newSkill = {
-    name: form.name.value,
-    category: form.category.value,
-    description: form.description.value,
-    location: form.location.value
+    name: document.getElementById("name").value,
+    category: document.getElementById("category").value,
+    description: document.getElementById("description").value,
+    location: document.getElementById("location").value
   };
 
-  fetch(baseURL, {
+  fetch("http://localhost:3000/skills", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify(newSkill)
   })
     .then(res => res.json())
-    .then(() => {
-      fetchSkills();
-      form.reset();
-    });
+    .then(addedSkill => {
+      allSkills.push(addedSkill);
+      displaySkills(allSkills);
+      skillForm.reset();
+    })
+    .catch(err => console.error("Add skill error:", err));
 });
 
-search.addEventListener("input", e => {
-  const term = e.target.value.toLowerCase();
-  fetch(baseURL)
-    .then(res => res.json())
-    .then(data => {
-      const filtered = data.filter(skill =>
-        skill.name.toLowerCase().includes(term) ||
-        skill.category.toLowerCase().includes(term)
-      );
-      displaySkills(filtered);
-    });
-});
-
+// 🌙 Toggle dark mode
 toggleModeBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
 
+// 🔃 Initial load
 fetchSkills();

@@ -2,10 +2,24 @@
   "skills": [
     {
       "id": 1,
-      "name": "Web Development",
-      "category": "Tech",
-      "description": "Looking to exchange HTML/CSS/JS knowledge for design skills",
+      "name": "Guitar Lessons",
+      "category": "Music",
+      "description": "Teach beginner guitar online",
       "location": "Remote"
+    },
+    {
+      "id": 2,
+      "name": "French Tutoring",
+      "category": "Language",
+      "description": "Conversational French tutoring",
+      "location": "Nairobi"
+    },
+    {
+      "id": 3,
+      "name": "Yoga Coaching",
+      "category": "Health & Fitness",
+      "description": "Personalized yoga sessions",
+      "location": "Los Angeles"
     }
   ]
 }
