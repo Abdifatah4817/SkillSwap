@@ -1,0 +1,11 @@
+{
+  "skills": [
+    {
+      "id": 1,
+      "name": "Web Development",
+      "category": "Tech",
+      "description": "Looking to exchange HTML/CSS/JS knowledge for design skills",
+      "location": "Remote"
+    }
+  ]
+}
